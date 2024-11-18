@@ -29,6 +29,7 @@ export function ProductCard({
   return (
     <main className={cn(className)} {...props}>
       <figure className={'relative w-full'}>
+        {/* Linking the product card to the product details page */}
         <Link
           href={`/products/${id}`}
           className={
@@ -45,19 +46,27 @@ export function ProductCard({
           />
         </Link>
         <figcaption className={'space-y-1'}>
-          <div className="absolute left-5 top-5 font-bold text-red-500">
-            <Badge variant={'destructive'}>{discountPercentage}% Sale</Badge>
-          </div>
+          {/* Displaying sale badge if discount is present */}
+          {discountPercentage && (
+            <div className="absolute left-5 top-5 font-bold text-red-500">
+              <Badge variant={'destructive'}>{discountPercentage}% Sale</Badge>
+            </div>
+          )}
+          {/* Tags */}
           <div className={'flex flex-wrap items-center gap-1'}>
             {tags.map((tag) => (
               <Badge key={tag}>{tag}</Badge>
             ))}
           </div>
+          {/* Title */}
           <h3 className={'text-xl'}>{title}</h3>
+          {/* Price and Stock */}
           <div className={'flex items-center gap-4'}>
             <p className="text-lg font-semibold">{price}$</p>
           </div>
+          {/* Rating */}
           <RatingStars rating={rating} />
+          {/* Stock Information */}
           <p className={'italic text-gray-500'}>Only {stock} remains</p>
         </figcaption>
       </figure>

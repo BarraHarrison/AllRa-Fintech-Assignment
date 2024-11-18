@@ -1,40 +1,29 @@
-import { type HTMLAttributes } from 'react'
-import { cn } from '@/lib/utils'
-import { StarIcon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { StarIcon } from 'lucide-react';
 
 export interface QuoteCardProps {
-  quote: string
-  author: string
-  isFavorite: boolean
-  onFavorite: () => void
+  id: number;
+  quote: string;
+  author: string;
+  isFavorite: boolean;
+  onFavorite: () => void;
 }
 
-export function QuoteCard({
-  className,
-  quote,
-  author,
-  isFavorite,
-  onFavorite,
-  ...props
-}: QuoteCardProps & HTMLAttributes<HTMLDivElement>) {
+export function QuoteCard({ id, quote, author, isFavorite, onFavorite }: QuoteCardProps) {
   return (
-    <main className={cn('relative p-5 border-b', className)} {...props}>
-      <div className={'w-11/12'}>
-        <p className={'text-xl italic text-primary'}>{quote}</p>
-        <small className={'text-secondary'}>- {author}</small>
-      </div>
-      <Button
+    <div className="relative p-4 border-b">
+      <p className="text-xl italic text-primary">{quote}</p>
+      <small className="text-secondary">- {author}</small>
+      <button
         className="absolute right-2 top-2"
         onClick={onFavorite}
-        variant="ghost"
+        aria-label="Favorite this quote"
       >
-        {isFavorite ? (
-          <StarIcon fill={'#FFD700'} stroke={'#FFD700'} />
-        ) : (
-          <StarIcon fill={'transparent'} className={'text-gray-400'} />
-        )}
-      </Button>
-    </main>
-  )
+        <StarIcon
+          fill={isFavorite ? '#FFD700' : 'none'} // Filled star if favorite
+          stroke={isFavorite ? '#FFD700' : '#ccc'} // Outline for non-favorites
+          className="w-6 h-6"
+        />
+      </button>
+    </div>
+  );
 }
