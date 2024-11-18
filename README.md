@@ -1,3 +1,10 @@
+# 바라님 added this comment to the README.md file so that this new branch could create a new pull request
+# Allra Wisdom Assignment
+This project implements:
+- Infinite scrolling functionality.
+- Favorite functionality with persistent storage.
+- A "My Favorites" page.
+
 # 올라 프론트엔드 과제 안내
 
 안녕하세요!
